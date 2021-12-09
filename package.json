@@ -1,33 +1,33 @@
 {
-  "name": "windy-plugin-skewt",
-  "version": "0.9.3",
-  "description": "A plugin to plot skewT-logP diagrams in windy.com",
-  "main": "dist/plugin.js",
-  "scripts": {
-    "start-dev": "node ./compiler.js --build --watch --prompt --serve --transpile",
-    "start": "node ./compiler.js --build --watch --serve --transpile",
-    "prepublishOnly": "node ./test/prepublish.js",
-    "test": "node ./test/prepublish.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/johnckealy/windy-plugin-skewt"
-  },
-  "author": "John C. Kealy",
-  "license": " ",
-  "dependencies": {
-    "@babel/core": "^7.1.2",
-    "@babel/preset-env": "^7.1.0",
-    "chokidar": "^2.0.4",
-    "colorette": "^1.0.6",
-    "commander": "^2.20.3",
-    "consola": "^1.4.5",
-    "decache": "^4.4.0",
-    "express": "^4.16.4",
-    "fs-extra": "^7.0.0",
-    "less": "^3.8.1",
-    "prompts": "^1.1.1",
-    "riot-compiler": "^3.5.1",
-    "ucfirst": "^1.0.0"
-  }
+    "name": "windy-plugin-skewt",
+    "version": "0.9.4",
+    "description": "A plugin to plot skewT-logP diagrams in windy.com",
+    "main": "dist/plugin.js",
+    "scripts": {
+        "start-dev": "node ./compiler.js --build --watch --prompt --serve --transpile",
+        "start": "node ./compiler.js --build --watch --serve --transpile",
+        "prepublishOnly": "node ./test/prepublish.js",
+        "test": "node ./test/prepublish.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/johnckealy/windy-plugin-skewt"
+    },
+    "author": "John C. Kealy",
+    "license": " ",
+    "dependencies": {
+        "@babel/core": "^7.1.2",
+        "@babel/preset-env": "^7.1.0",
+        "chokidar": "^2.0.4",
+        "colorette": "^1.0.6",
+        "commander": "^2.20.3",
+        "consola": "^1.4.5",
+        "decache": "^4.4.0",
+        "express": "^4.16.4",
+        "fs-extra": "^7.0.0",
+        "less": "^3.8.1",
+        "prompts": "^1.1.1",
+        "riot-compiler": "^3.5.1",
+        "ucfirst": "^1.0.0"
+    }
 }
