@@ -1,8 +1,7 @@
-
 import picker from '@windy/picker';
 // import utils from '@windy/utils';
 import store from '@windy/store';
-import map from '@windy/map';
+import { map } from '@windy/map'
 import broadcast from '@windy/broadcast';
 
 /************************************************************************
@@ -50,7 +49,7 @@ const activate_SkewT = latLon => {
 
     var btn = document.getElementById('close-tooltips')
         .addEventListener('click', () => {
-            map.eachLayer(function (layer) {
+            map.eachLayer(function(layer) {
                 if (layer.options.pane === "tooltipPane") layer.removeFrom(map);
             });
         })
@@ -84,7 +83,7 @@ const activate_SkewT = latLon => {
     const showSondesCB = document.getElementById('show-sondes-checkbox').checked
 
     if (sondeMarker) map.removeLayer(sondeMarker)
-    sondeMarker = L.marker([lat, lon], { icon: map.myMarkers.pulsatingIcon }).addTo(map);
+    sondeMarker = L.marker([lat, lon]).addTo(map);
 
     if (showSondesCB) {
         fetch(`${SkewTApiPath}/api/nearest/?lat=${lat}&lon=${lon}`)
@@ -104,9 +103,9 @@ const activate_SkewT = latLon => {
                     offset: [15, 0],
                     className: 'tooltip'
                 })
-                M.addEventListener('click', function () {
+                M.addEventListener('click', function() {
                     if (sondeMarker) map.removeLayer(sondeMarker)
-                    sondeMarker = L.marker([sonde.lat, sonde.lon], { icon: map.myMarkers.pulsatingIcon }).addTo(map);
+                    sondeMarker = L.marker([sonde.lat, sonde.lon]).addTo(map);
                     onMarkerClick(sonde.wmo_id, startpressure, endpressure);
                 });
             });
@@ -142,7 +141,7 @@ const activate_SkewT = latLon => {
         if (isNaN(surfaceTempSpotForecast[0])) {
             if (RetryAttemptsSpot < 3) {
                 console.log('There was a problem loading the spot forecast, retrying...')
-                setTimeout(function () { activate_SkewT(); }, 500);
+                setTimeout(function() { activate_SkewT(); }, 500);
                 RetryAttemptsSpot += 1
             }
         }
@@ -156,11 +155,10 @@ const activate_SkewT = latLon => {
             )
             var surfaceTemp = surfaceTempSpotForecast[tidx];
             var surfaceDewPoint = surfaceDewPointSpotForecast[tidx];
-        }
-        catch (err) {
+        } catch (err) {
             if (RetryAttemptsAir < 3) {
                 console.log("There was a problem with the data loader, retrying...")
-                setTimeout(function () { activate_SkewT(); }, 1000);
+                setTimeout(function() { activate_SkewT(); }, 1000);
                 RetryAttemptsAir += 1
             }
         }
@@ -191,7 +189,7 @@ const activate_SkewT = latLon => {
 // As the picker appears or moves, draw the SkewT at the new latlon point
 picker.on('pickerOpened', activate_SkewT)
 picker.on('pickerMoved', activate_SkewT)
-store.on('timestamp', function () {
+store.on('timestamp', function() {
     if (PickerOn) {
         activate_SkewT();
     }
@@ -242,15 +240,15 @@ function zoom_button() {
     var zoomOut = document.getElementById('zoom-out')
     var zoomIn = document.getElementById('zoom-in')
     var closeButton = document.getElementById('closebutton')
-    zoomIn.addEventListener("click", function () {
+    zoomIn.addEventListener("click", function() {
         zoomed = true;
         activate_SkewT();
     });
-    zoomOut.addEventListener("click", function () {
+    zoomOut.addEventListener("click", function() {
         zoomed = false;
         activate_SkewT();
     });
-    closeButton.addEventListener("click", function () {
+    closeButton.addEventListener("click", function() {
         close_skewT();
     });
 }
@@ -278,10 +276,9 @@ function get_data(data, Pascent, field, tidx) {
     return ascent
 }
 
-W.map.on("click", e => {
+map.on("click", e => {
     broadcast.fire('rqstOpen', 'picker', { lat: e.latlng.lat, lon: e.latlng.lng })
     picker.on('pickerOpened', () => {
         document.getElementById('windy-plugin-skewt').style.display = 'block';
     });
 })
-
