@@ -28,7 +28,7 @@ W.loadPlugin(
 /* Mounting options */
 {
   "name": "windy-plugin-skewt",
-  "version": "0.9.3",
+  "version": "0.9.4",
   "author": "John C. Kealy",
   "repository": {
     "type": "git",
@@ -792,9 +792,9 @@ function () {
       });
     });
 
-    var _picker$getParams = picker.getParams(),
-        lat = _picker$getParams.lat,
-        lon = _picker$getParams.lon;
+    var _W$store$get = W.store.get("pickerLocation"),
+        lat = _W$store$get.lat,
+        lon = _W$store$get.lon;
 
     PickerOn = true;
 
@@ -940,7 +940,6 @@ function () {
     });
   };
 
-  picker.on('pickerOpened', activate_SkewT);
   picker.on('pickerMoved', activate_SkewT);
   store.on('timestamp', function () {
     if (PickerOn) {
