@@ -54,7 +54,7 @@ const activate_SkewT = latLon => {
             });
         })
 
-    let { lat, lon } = picker.getParams()
+    let { lat, lon } = W.store.get("pickerLocation");
     PickerOn = true;
 
     if (zoomed) {
@@ -187,7 +187,6 @@ const activate_SkewT = latLon => {
 }
 
 // As the picker appears or moves, draw the SkewT at the new latlon point
-picker.on('pickerOpened', activate_SkewT)
 picker.on('pickerMoved', activate_SkewT)
 store.on('timestamp', function() {
     if (PickerOn) {
